@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="375dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="110dp"
+        android:src="@drawable/main" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp">
+
+        <ImageButton
+            android:id="@+id/btnSeatCheck"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="#ececec"
+            android:scaleType="fitCenter"
+            android:src="@drawable/seatcheck" />
+
+        <ImageButton
+            android:id="@+id/btnSeatreservation"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="#ececec"
+            android:scaleType="fitCenter"
+            android:src="@drawable/seatreservation" />
+
+        <ImageButton
+            android:id="@+id/btnAddtime"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="#ececec"
+            android:scaleType="fitCenter"
+            android:src="@drawable/addtime" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btnMenuorder"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="#ececec"
+            android:scaleType="fitCenter"
+            android:src="@drawable/menuorder" />
+
+        <ImageButton
+            android:id="@+id/btnMakers"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="#ececec"
+            android:scaleType="fitCenter"
+            android:src="@drawable/makers" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="375dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/main" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtId"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:hint="ID : INSERT YOUR ID" />
+
+            <EditText
+                android:id="@+id/edtPw"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="PW : INSERT YOUR PW"
+                android:password="true" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:background="#ececec"
+            android:scaleType="fitCenter"
+            android:src="@drawable/loginbutton" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/joinBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:adjustViewBounds="true"
+        android:background="#ececec"
+        android:scaleType="fitCenter"
+        android:src="@drawable/joinbutton" />
+
+</LinearLayout>
