@@ -45,7 +45,7 @@ public class Main extends Activity {
         btnMenuorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Menuorder.class);
+                Intent intent = new Intent(getApplicationContext(), Menu_Order.class);
                 startActivity(intent);
             }
         });
