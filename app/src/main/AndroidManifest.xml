@@ -21,7 +21,7 @@
         <activity android:name=".Seatcheck"/>
         <activity android:name=".Addtime"/>
         <activity android:name=".Seatreservation"/>
-        <activity android:name=".Menu_Order"/>
+        <activity android:name=".FoodOrder.Menu_Order"/>
     </application>
 
 </manifest>
