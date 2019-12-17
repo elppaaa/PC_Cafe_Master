@@ -1,7 +1,10 @@
 package ac.kr.project_20191121.FoodOrder;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -16,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import ac.kr.project_20191121.R;
@@ -24,8 +29,12 @@ public class MenuListAdapter extends BaseAdapter {
     private ArrayList<MenuItemList> listItemList = new ArrayList<MenuItemList>();
     public View.OnClickListener conClickListener;
     Context context;
-    public MenuListAdapter(Context context) {
+    TextView basketlist;
+    private OnItemClick listen;
+    public MenuListAdapter(Context context, OnItemClick listener) {
         this.context = context;
+        this.basketlist = basketlist;
+        this.listen = listener;
     }
 
 
@@ -65,8 +74,8 @@ public class MenuListAdapter extends BaseAdapter {
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
         final ImageView iconImageView = (ImageView) view.findViewById(R.id.imageView1) ;
-        TextView titleTextView = (TextView) view.findViewById(R.id.textView1) ;
-        TextView descTextView = (TextView) view.findViewById(R.id.textView2) ;
+        final TextView titleTextView = (TextView) view.findViewById(R.id.textView1) ;
+        final TextView descTextView = (TextView) view.findViewById(R.id.textView2) ;
         Button btnAdd = (Button) view.findViewById(R.id.btn_Menu_Add);
 
         // Data Set(listItemList)에서 i에 위치한 데이터 참조 획득
@@ -91,10 +100,32 @@ public class MenuListAdapter extends BaseAdapter {
         });
 
 
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage(titleTextView.getText().toString()+"을(를) 추가하시겠습니까?")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                listen.onClick(titleTextView.getText().toString(), Integer.parseInt(descTextView.getText().toString()));
+                            }
+                        })
+                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
+                            }
+                        });
+                builder.create().show();
+            }
+
+        });
 
         return view;
     }
+
+
 
     public void addItem(Drawable img, String Name, String ex) {
         MenuItemList item = new MenuItemList();
