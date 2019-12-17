@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -87,7 +88,10 @@ public class MenuListAdapter extends BaseAdapter {
 
 
 
+<<<<<<< HEAD:app/src/main/java/ac/kr/project_20191121/FoodOrder/MenuListAdapter.java
 
+=======
+>>>>>>> 28520a37b7ae7eb58d9191f5be5f032fc1208aa0:app/src/main/java/ac/kr/project_20191121/MenuListAdapter.java
         return view;
     }
 
