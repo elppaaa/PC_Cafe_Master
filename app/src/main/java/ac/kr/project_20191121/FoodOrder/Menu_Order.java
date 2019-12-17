@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -26,8 +27,16 @@ public class Menu_Order extends Activity {
         listview.setAdapter(adapter);
 
         //아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.mipmap.ic_launcher), "box", "boxboxboxbox");
-        adapter.addItem(ContextCompat.getDrawable(this, R.mipmap.ic_launcher_round), "야", "너가 그렇게 공부를 잘해?");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.menuitem_kimbob), "김밥", "2500");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.menuitem_ramen), "라면", "3000");
+
+
+        btnToMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        }); //btnToMain OnClicklistener -> 종료
 
 /*
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

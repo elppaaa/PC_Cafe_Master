@@ -2,10 +2,14 @@ package ac.kr.project_20191121.FoodOrder;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -80,6 +84,7 @@ public class MenuListAdapter extends BaseAdapter {
                 Dialog imgdialog = new Dialog(context);
                 imgdialog.setContentView(R.layout.image_dialog);
                 ImageView im = (ImageView) imgdialog.findViewById(R.id.imgdialog_img);
+                imgdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 im.setImageDrawable(iconImageView.getDrawable());
                 imgdialog.show();
             }
@@ -88,10 +93,6 @@ public class MenuListAdapter extends BaseAdapter {
 
 
 
-<<<<<<< HEAD:app/src/main/java/ac/kr/project_20191121/FoodOrder/MenuListAdapter.java
-
-=======
->>>>>>> 28520a37b7ae7eb58d9191f5be5f032fc1208aa0:app/src/main/java/ac/kr/project_20191121/MenuListAdapter.java
         return view;
     }
 
