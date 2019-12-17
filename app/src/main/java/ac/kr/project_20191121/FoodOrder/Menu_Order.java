@@ -29,6 +29,7 @@ public class Menu_Order extends Activity {
         //아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.menuitem_kimbob), "김밥", "2500");
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.menuitem_ramen), "라면", "3000");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.menuitem_dduck), "떡 사리", "500");
 
 
         btnToMain.setOnClickListener(new View.OnClickListener() {
@@ -56,9 +57,15 @@ public class Menu_Order extends Activity {
  */
         
 
+    }
 
+
+/*
+    public void FoodBasket{
 
     }
+
+ */
 
 
 }
