@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import ac.kr.project_20191121.Payment;
+import ac.kr.project_20191121.Person;
 import ac.kr.project_20191121.R;
 
 final public class Menu_Order extends Activity implements OnItemClick {
@@ -70,6 +72,9 @@ final public class Menu_Order extends Activity implements OnItemClick {
                                 /*
                                 Pay page로 금액을 받아 엑티비티 시작.
                                  */
+                                Intent intent = new Intent(getApplicationContext(), Payment.class);
+                                intent.putExtra("cost", sum);
+                                startActivity(intent);
                                 }
                             })
                             .setNegativeButton("아니오", null)

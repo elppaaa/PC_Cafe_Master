@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DBHelper extends SQLiteOpenHelper {
     private String id, pass, name, phone, date;
@@ -88,8 +90,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 _c.GetNum(), _c.GetNick(), _c.GetDue(), _c.GetPw(), _c.GetJm() });
     }
 
+
     //nick으로 Card Object 찾기
-    public Card GetCardInfo(String _nick){
+    public Card GetCard(String _nick){
         for(Card _c : (List<Card>) GetAllCard()){
            if(_c.GetNick().equals(_nick))
                return _c;
@@ -97,11 +100,21 @@ public class DBHelper extends SQLiteOpenHelper {
         return null;
     }
 
-    public List GetAllCard(){
+    //HashMap<Nick, CardObj
+    public HashMap GetAllCardMap(){
+        HashMap<String, Card> _hash = new HashMap<>();
+
+        for (Card _c : (ArrayList<Card>) GetAllCard()){
+            _hash.put(_c.GetNick(), _c);
+        }
+        return _hash;
+    }
+
+    public ArrayList GetAllCard(){
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT NUM, NICK, DUE, PW, JM, FROM CARD_INFO; ");
+        sb.append("SELECT NUM, NICK, DUE, PW, JM FROM CARD_INFO; ");
         Cursor c = read_db.rawQuery(sb.toString(), null);
-        List card_list = new ArrayList<Card>();
+        ArrayList card_list = new ArrayList<Card>();
         Card card = null;
         while(c.moveToNext()){
             card = new Card(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4));

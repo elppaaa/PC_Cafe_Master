@@ -28,6 +28,7 @@
             android:id="@+id/spinnerCard"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="30dp" />
     </LinearLayout>
 
@@ -47,7 +48,8 @@
         <EditText
             android:id="@+id/edtCardNum"
             android:layout_width="300dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
             android:layout_marginLeft="20dp" />
 
 
@@ -68,9 +70,11 @@
             android:textStyle="bold" />
 
         <EditText
+            android:maxLength="2"
             android:id="@+id/edtCardDueM"
             android:layout_width="50dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
             android:layout_marginLeft="20dp" />
 
         <TextView
@@ -82,9 +86,11 @@
             android:textStyle="bold" />
 
         <EditText
+            android:maxLength="2"
             android:id="@+id/edtCardDueY"
+            android:inputType="numberDecimal"
             android:layout_width="50dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp" />
 
         <TextView
@@ -111,10 +117,12 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtCardDuePw"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp" />
+            android:maxLength="2"
+            android:id="@+id/edtCardPw"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:inputType="numberDecimal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -172,32 +180,47 @@
             android:textStyle="bold" />
 
         <EditText
+            android:inputType="numberDecimal"
+            android:id="@+id/edtCardJm"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:maxLength="6"
             android:hint="주민번호앞6자리"/>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/edtCardCost"
-        android:gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="230dp"
-        android:layout_gravity="center"
-        android:text="결제 금액 : "
-        android:textSize="28sp"
-        android:maxLines="1"
-        android:textAlignment="center"
-        android:textColor="#ffffff"
-        android:background="#FFAEB9"/>
 
-    <ImageButton
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/paymentbtn"
-        android:background="#ececec"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"/>
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/edtCardCost"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="#FFAEB9"
+            android:gravity="bottom"
+            android:maxLines="1"
+            android:text="결제 금액 : "
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+
+
+        <ImageButton
+            android:id="@+id/btnCardSlash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/paymentbtn"
+            android:background="#ececec"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
+    </LinearLayout>
 </LinearLayout>
