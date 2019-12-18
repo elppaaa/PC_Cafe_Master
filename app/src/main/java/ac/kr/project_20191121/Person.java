@@ -28,6 +28,9 @@ public class Person {
     public String getPASS(){
         return this.PASS;
     }
+    public String getNAME(){
+        return this.NAME;
+    }
 
 
 }

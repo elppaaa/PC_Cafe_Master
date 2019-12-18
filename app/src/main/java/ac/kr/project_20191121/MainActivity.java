@@ -50,9 +50,11 @@ public class MainActivity extends AppCompatActivity{
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Person p;
                 DBHelper d = new DBHelper(getApplicationContext());
-                if(d.login(edtId.getText().toString(), edtPass.getText().toString())){
-                    e.putString("login_id", edtId.getText().toString());
+                if((p = d.login(edtId.getText().toString(), edtPass.getText().toString())) != null){
+                    e.putString("login_id",p.getID());
+                    e.putString("login_name", p.getNAME());
                     e.commit();
                     Intent intent = new Intent(getApplicationContext(), Main.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

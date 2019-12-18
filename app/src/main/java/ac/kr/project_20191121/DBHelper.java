@@ -86,13 +86,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean login(String _id, String _pw){
+    public Person login(String _id, String _pw){
       List<Person> data  = GetAllData();
       for(Person p : data){
           if (_id.equals(p.getID()) && _pw.equals(p.getPASS()))
-              return true;
+              return p;
       }
-      return false;
+      return null;
     }
 
 

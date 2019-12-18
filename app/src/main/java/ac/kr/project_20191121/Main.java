@@ -32,7 +32,7 @@ public class Main extends Activity {
         btnMenuorder = (ImageButton) findViewById(R.id.btnMenuorder);
         btnMakers = (ImageButton) findViewById(R.id.btnMakers);
         mainhello = (TextView) findViewById(R.id.mainhello);
-        user = getSharedPreferences("login",MODE_PRIVATE).getString("login_id","");
+        user = getSharedPreferences("login",MODE_PRIVATE).getString("login_name","");
         mainhello.setText(user + "님 좋은시간 보내세요.");
         btnSeatcheck.setOnClickListener(new View.OnClickListener() {
             @Override
