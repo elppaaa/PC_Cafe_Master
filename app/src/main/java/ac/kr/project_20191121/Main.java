@@ -21,6 +21,7 @@ public class Main extends Activity {
     ImageButton  btnSeatreservation, btnAddtime, btnMenuorder, btnMakers;
     TextView mainhello;
     String user;
+    int time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,8 @@ public class Main extends Activity {
         btnMakers = (ImageButton) findViewById(R.id.btnMakers);
         mainhello = (TextView) findViewById(R.id.mainhello);
         user = getSharedPreferences("login",MODE_PRIVATE).getString("login_name","");
-        mainhello.setText(user + "님 좋은시간 보내세요.");
+        DBHelper db = new DBHelper(this);
+        mainhello.setText(user + "님 좋은시간 보내세요.  잔여 시간 : " + time);
 
 
         btnAddtime.setOnClickListener(new View.OnClickListener() {

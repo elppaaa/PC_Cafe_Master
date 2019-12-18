@@ -1,6 +1,7 @@
 package ac.kr.project_20191121;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -19,7 +20,8 @@ public class DBHelper extends SQLiteOpenHelper {
         _PASS TEXT,
         NAME TEXT,
         PHONE TEXT
-        BIRTH DATE
+        BIRTH TEXT
+        TIME INTEGER
      */
 
 
@@ -43,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         StringBuffer sb = new StringBuffer();
-        sb.append("CREATE TABLE USER_INFO( _ID TEXT PRIMARY KEY , _PASS TEXT, NAME TEXT, PHONE TEXT, BIRTH TEXT ) ");
+        sb.append("CREATE TABLE USER_INFO( _ID TEXT PRIMARY KEY , _PASS TEXT, NAME TEXT, PHONE TEXT, BIRTH TEXT , TIME INTEGER) ");
         sqLiteDatabase.execSQL(sb.toString());
         Toast.makeText(context, "Table 생성완료", Toast.LENGTH_SHORT).show();
     }
@@ -62,8 +64,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public void InsertData(String _id, String _pass, String _name, String _phone, String _date) {
         StringBuffer sb = new StringBuffer();
         sb.append("INSERT INTO USER_INFO (");
-        sb.append("_ID, _PASS, NAME, PHONE, BIRTH) ");
-        sb.append(" VALUES (?, ?, ?, ?, ? ); ");
+        sb.append("_ID, _PASS, NAME, PHONE, BIRTH, TIME) ");
+        sb.append(" VALUES (?, ?, ?, ?, ?, 0 ); ");
 
         write_db.execSQL(sb.toString(), new Object[]{
                 _id, _pass, _name, _phone, _date});
@@ -72,7 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public List GetAllData() {
         StringBuffer sb = new StringBuffer();
-        sb.append(" SELECT _ID, _PASS, NAME, PHONE, BIRTH FROM USER_INFO; ");
+        sb.append(" SELECT _ID, _PASS, NAME, PHONE, BIRTH, TIME FROM USER_INFO; ");
         Cursor c = read_db.rawQuery(sb.toString(), null);
         List people = new ArrayList<Person>();
         Person person = null;
@@ -89,8 +91,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public Person login(String _id, String _pw){
       List<Person> data  = GetAllData();
       for(Person p : data){
-          if (_id.equals(p.getID()) && _pw.equals(p.getPASS()))
+          if (_id.equals(p.getID()) && _pw.equals(p.getPASS())) {
               return p;
+          }
       }
       return null;
     }
