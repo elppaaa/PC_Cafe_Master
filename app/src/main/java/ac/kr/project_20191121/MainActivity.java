@@ -1,6 +1,7 @@
 package ac.kr.project_20191121;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class MainActivity extends Join2 {
+public class MainActivity extends AppCompatActivity{
+    SharedPreferences pref;
+    SharedPreferences.Editor e;
 
     EditText edtId, edtPass;
     ImageButton btnJoin, btnLogin;
@@ -25,15 +28,44 @@ public class MainActivity extends Join2 {
         btnLogin=(ImageButton) findViewById(R.id.loginBtn);
         edtId=(EditText)findViewById(R.id.edtId);
         edtPass=(EditText)findViewById(R.id.edtPw);
+        pref = getSharedPreferences("login", MODE_PRIVATE);
+        e = pref.edit();
+        if(!pref.getString("login_id","").isEmpty()){
+            Intent i = new Intent(this, Main.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            acfinish();
+        }
+
+
+
 
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),Join2.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Join2.class));
 
             }
         }); //btnjoin2
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBHelper d = new DBHelper(getApplicationContext());
+                if(d.login(edtId.getText().toString(), edtPass.getText().toString())){
+                    e.putString("login_id", edtId.getText().toString());
+                    e.commit();
+                    Intent intent = new Intent(getApplicationContext(), Main.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    acfinish();
+                }else{
+                    Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+        /*
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,5 +113,10 @@ public class MainActivity extends Join2 {
                 sqlDB.close();
             }
         });
+        */
+
+    }
+    public void acfinish() {
+        this.finish();
     }
 }

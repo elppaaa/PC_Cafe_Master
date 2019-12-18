@@ -72,21 +72,11 @@ final public class Menu_Order extends Activity implements OnItemClick {
                                  */
                                 }
                             })
-                            .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    //negative;
-                                }
-                            })
+                            .setNegativeButton("아니오", null)
                             .create().show();
                 } else {
                     builder.setMessage("메뉴를 선택 후 결제 버튼을 눌러주세요.")
-                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-
-                                }
-                            })
+                            .setPositiveButton("확인", null)
                             .create().show();
                 }
 
