@@ -81,7 +81,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Date d = new Date();
 
         while (c.moveToNext()) {
-            person = new Person(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4));
+            person = new Person(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getInt(5));
             people.add(person);
         }
         return people;

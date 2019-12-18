@@ -8,12 +8,13 @@ public class Person {
     private int TIME;
 
 
-    public Person(String _id, String _pass, String _name, String _phone, String _birth){
+    public Person(String _id, String _pass, String _name, String _phone, String _birth, int _time){
         this.ID = _id;
         this.PASS = _pass;
         this.NAME = _name;
         this.PHONE = _phone;
         this.BIRTH = _birth;
+        this.TIME = _time;
     }
 
     public void setInfo(String _id, String _pass, String _name, String _phone, String _birth, int _time){
