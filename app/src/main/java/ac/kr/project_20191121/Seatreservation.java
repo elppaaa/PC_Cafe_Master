@@ -3,6 +3,7 @@ package ac.kr.project_20191121;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Seatreservation extends Activity {
     ImageButton btnTomain;
@@ -64,7 +66,7 @@ public class Seatreservation extends Activity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView imageView = new ImageView(context);
+            final ImageView imageView = new ImageView(context);
             imageView.setLayoutParams(new GridView.LayoutParams(250,220));
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setPadding(5,5,5,5);
@@ -81,7 +83,14 @@ public class Seatreservation extends Activity {
                     ivSeat.setImageResource(posterID[pos]);
                     dlg.setIcon(R.drawable.seaticon1);
                     dlg.setView(dialogView);
-                    dlg.setNegativeButton("닫기", null);
+                    dlg.setPositiveButton("예약", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Toast.makeText(getApplicationContext(), "예약되셨습니다.", Toast.LENGTH_SHORT).show();
+                                    imageView.setImageResource(R.drawable.seaticonbook);
+                                }
+                            });
+                            dlg.setNegativeButton("닫기", null);
                     dlg.show();
                 }
             });
