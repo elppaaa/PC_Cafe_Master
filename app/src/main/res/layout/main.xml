@@ -11,6 +11,14 @@
         android:layout_gravity="center"
         android:layout_marginTop="110dp"
         android:src="@drawable/main" />
+    <TextView
+        android:id="@+id/mainhello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="15sp"
+        android:maxLines="1"
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -66,12 +74,5 @@
             android:src="@drawable/makers" />
 
     </LinearLayout>
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="logout"
-        />
 
 </LinearLayout>
