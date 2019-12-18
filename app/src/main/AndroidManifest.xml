@@ -18,7 +18,6 @@
         </activity>
         <activity android:name=".Join2"/>
         <activity android:name=".Main"/>
-        <activity android:name=".Seatcheck"/>
         <activity android:name=".Addtime"/>
         <activity android:name=".Seatreservation"/>
         <activity android:name=".FoodOrder.Menu_Order"/>

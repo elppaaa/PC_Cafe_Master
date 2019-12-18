@@ -18,7 +18,7 @@ import java.nio.channels.InterruptedByTimeoutException;
 import ac.kr.project_20191121.FoodOrder.Menu_Order;
 
 public class Main extends Activity {
-    ImageButton btnSeatcheck, btnSeatreservation, btnAddtime, btnMenuorder, btnMakers;
+    ImageButton  btnSeatreservation, btnAddtime, btnMenuorder, btnMakers;
     TextView mainhello;
     String user;
 
@@ -26,7 +26,6 @@ public class Main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        btnSeatcheck = (ImageButton) findViewById(R.id.btnSeatCheck);
         btnSeatreservation = (ImageButton) findViewById(R.id.btnSeatreservation);
         btnAddtime = (ImageButton) findViewById(R.id.btnAddtime);
         btnMenuorder = (ImageButton) findViewById(R.id.btnMenuorder);
@@ -34,13 +33,7 @@ public class Main extends Activity {
         mainhello = (TextView) findViewById(R.id.mainhello);
         user = getSharedPreferences("login",MODE_PRIVATE).getString("login_name","");
         mainhello.setText(user + "님 좋은시간 보내세요.");
-        btnSeatcheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Seatcheck.class);
-                startActivity(intent);
-            }
-        });
+
 
         btnAddtime.setOnClickListener(new View.OnClickListener() {
             @Override
