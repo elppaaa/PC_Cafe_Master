@@ -18,8 +18,9 @@ import java.util.List;
 public class Join2 extends Activity {
     // myDBHelper myHelper;//객체참조변수, 인스턴스생성
     private EditText jId, jPw, jName, jPhone, jBirth;
-    private ImageButton btnRegistration;
+    private ImageButton btnRegistration, btnCheckId;
     private DBHelper mDB;
+    private boolean id_ok = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,27 +34,45 @@ public class Join2 extends Activity {
         jPhone = (EditText) findViewById(R.id.jPhone);
         jBirth = (EditText) findViewById(R.id.jBirth);
         btnRegistration = (ImageButton) findViewById(R.id.jregistration);
+        btnCheckId = (ImageButton) findViewById(R.id.btnCheckId);
         //DB
         mDB = new DBHelper(this);
         //회원가입화면에서 ID, PW EditText에 입력하고 회원가입버튼을 누르면 1건 insert 레코드 등록
+
+        btnCheckId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mDB.checkID(jId.getText().toString()) == true) {
+                    Toast.makeText(getApplicationContext(), "이미 있는 아이디입니다.", Toast.LENGTH_SHORT).show();
+                } else  {
+                    Toast.makeText(getApplicationContext(), "사용 가능합니다.", Toast.LENGTH_SHORT).show();
+                    id_ok = true;
+                }
+            }
+        });
 
 
         btnRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //빈칸 검증.
-                for(EditText e : new EditText[]{jId, jPw, jName, jPhone, jBirth}){
-                    if (e.getText().toString().isEmpty())  {
+                for (EditText e : new EditText[]{jId, jPw, jName, jPhone, jBirth}) {
+                    if (e.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "빈 칸을 모두 채워주세요.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
-                mDB.InsertData(jId.getText().toString(), jPw.getText().toString(),jName.getText().toString(), jPhone.getText().toString(), jBirth.getText().toString());
+                //중복체크를 한 경
+                if(id_ok) {
+                    mDB.InsertData(jId.getText().toString(), jPw.getText().toString(), jName.getText().toString(), jPhone.getText().toString(), jBirth.getText().toString());
 
-                //회원1건 가입완료 사용자는 아무런 메세지가 없으니 "가입됨"토스트메세지 줌
-                Toast.makeText(getApplicationContext(), "가입됨", Toast.LENGTH_SHORT).show();
-                //화면이동 로그인화면으로 이동
-                finish();
+                    //회원1건 가입완료 사용자는 아무런 메세지가 없으니 "가입됨"토스트메세지 줌
+                    Toast.makeText(getApplicationContext(), "가입됨", Toast.LENGTH_SHORT).show();
+                    //화면이동 로그인화면으로 이동
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), "중복체크를 해주세요.", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

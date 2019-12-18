@@ -13,6 +13,7 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     private String id, pass, name, phone, date;
+    private String Card_num, Card_cvc, Card_my, Card_pw, Card_jm;
 
     /*
     [*] USER_INFO TABLE
@@ -97,7 +98,14 @@ public class DBHelper extends SQLiteOpenHelper {
       }
       return null;
     }
-
+    //ID가 있으면 true
+    public boolean checkID(String _id){
+        for(Person p : (List<Person>) GetAllData()){
+            if(p.getID().equals(_id))
+                return true;
+        }
+        return false;
+    }
 
 
 
