@@ -10,6 +10,13 @@
         android:layout_height="wrap_content"
         android:src="@drawable/seatreservationtitle"/>
 
+    <GridView
+        android:id="@+id/gridView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:numColumns="3" />
+
     <ImageButton
         android:id="@+id/btnTomain"
         android:layout_width="150dp"

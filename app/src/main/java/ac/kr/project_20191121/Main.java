@@ -15,19 +15,10 @@ public class Main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        btnSeatcheck = (ImageButton) findViewById(R.id.btnSeatCheck);
         btnSeatreservation = (ImageButton) findViewById(R.id.btnSeatreservation);
         btnAddtime = (ImageButton) findViewById(R.id.btnAddtime);
         btnMenuorder = (ImageButton) findViewById(R.id.btnMenuorder);
         btnMakers = (ImageButton) findViewById(R.id.btnMakers);
-
-        btnSeatcheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Seatcheck.class);
-                startActivity(intent);
-            }
-        });
 
         btnAddtime.setOnClickListener(new View.OnClickListener() {
             @Override
