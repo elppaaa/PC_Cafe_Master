@@ -17,19 +17,22 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /*
     [*] USER_INFO TABLE
-        _ID TEXT,
-        _PASS TEXT,
-        NAME TEXT,
-        PHONE TEXT
-        BIRTH TEXT
-        TIME INTEGER
+        _ID TEXT, 0
+        _PASS TEXT, 1
+        NAME TEXT, 2
+        PHONE TEXT, 3
+        BIRTH TEXT, 4
+        TIME INTEGER 5
      */
 
 
     /*
-    To-do
-    [*] change var date
-        get date string from datepicker
+    [*] CARD_INFO TABLE
+        NUM TEXT, 0
+        NICK TEXT, 1
+        DUE TEXT, 2
+        PW TEXT, 3
+        JM TEXT 4
      */
 
     private Context context;
@@ -47,6 +50,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         StringBuffer sb = new StringBuffer();
         sb.append("CREATE TABLE USER_INFO( _ID TEXT PRIMARY KEY , _PASS TEXT, NAME TEXT, PHONE TEXT, BIRTH TEXT , TIME INTEGER) ");
+        sqLiteDatabase.execSQL(sb.toString());
+        sb = new StringBuffer();
+        sb.append("CREATE TABLE CARD_INFO( NUM TEXT PRIMARY KEY, NICK TEXT, DUE TEXT, PW TEXT, JM TEXT );");
         sqLiteDatabase.execSQL(sb.toString());
         Toast.makeText(context, "Table 생성완료", Toast.LENGTH_SHORT).show();
     }
@@ -69,7 +75,39 @@ public class DBHelper extends SQLiteOpenHelper {
         sb.append(" VALUES (?, ?, ?, ?, ?, 0 ); ");
 
         write_db.execSQL(sb.toString(), new Object[]{
-                _id, _pass, _name, _phone, _date});
+                _id, _pass, _name, _phone, _date });
+
+    }
+
+    public void insertCard(Card _c){
+        StringBuffer sb = new StringBuffer();
+        sb.append("INSERT INTO CARD_INFO ( ");
+        sb.append("NUM, NICK, DUE, PW, JM )");
+        sb.append(" VALUES (?, ?, ?, ?, ? );");
+        write_db.execSQL(sb.toString(), new Object[]{
+                _c.GetNum(), _c.GetNick(), _c.GetDue(), _c.GetPw(), _c.GetJm() });
+    }
+
+    //nick으로 Card Object 찾기
+    public Card GetCardInfo(String _nick){
+        for(Card _c : (List<Card>) GetAllCard()){
+           if(_c.GetNick().equals(_nick))
+               return _c;
+        }
+        return null;
+    }
+
+    public List GetAllCard(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT NUM, NICK, DUE, PW, JM, FROM CARD_INFO; ");
+        Cursor c = read_db.rawQuery(sb.toString(), null);
+        List card_list = new ArrayList<Card>();
+        Card card = null;
+        while(c.moveToNext()){
+            card = new Card(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4));
+            card_list.add(card);
+        }
+        return card_list;
 
     }
 
@@ -79,7 +117,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor c = read_db.rawQuery(sb.toString(), null);
         List people = new ArrayList<Person>();
         Person person = null;
-        Date d = new Date();
 
         while (c.moveToNext()) {
             person = new Person(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getInt(5));
