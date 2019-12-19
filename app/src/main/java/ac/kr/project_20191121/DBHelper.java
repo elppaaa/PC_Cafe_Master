@@ -81,7 +81,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertCard(Card _c){
+    public void InsertCard(Card _c){
         StringBuffer sb = new StringBuffer();
         sb.append("INSERT INTO CARD_INFO ( ");
         sb.append("NUM, NICK, DUE, PW, JM )");
@@ -89,6 +89,16 @@ public class DBHelper extends SQLiteOpenHelper {
         write_db.execSQL(sb.toString(), new Object[]{
                 _c.GetNum(), _c.GetNick(), _c.GetDue(), _c.GetPw(), _c.GetJm() });
     }
+
+    public boolean chkCard(Card now_card) {
+        Card _c = GetCard(now_card.GetNick());
+        if (now_card.GetNum().equals(_c.GetNum()) && now_card.GetDue().equals(_c.GetDue()) && now_card.GetPw().equals(_c.GetPw()) && now_card.GetJm().equals(_c.GetJm())) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 
 
     //nick으로 Card Object 찾기
